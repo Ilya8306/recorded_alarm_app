@@ -18,7 +18,8 @@ class MainActivity : AppCompatActivity() {
 
         reciver = myBroadcastReceiver()
 
-        var it = IntentFilter("com.tester.alarmmanager")
+        var it = IntentFilter()
+        it.addAction("alm")
         registerReceiver(reciver,it)
     }
 
@@ -35,7 +36,8 @@ class MainActivity : AppCompatActivity() {
         text.text = Hours.toString() + ":" + Min.toString()
 
         val savedata = SaveData(applicationContext)
-        savedata.setAlarm(Hours, Min)
+        savedata.saveData(Hours, Min)
+        savedata.setAlarm()
 
     }
     override fun onStop() {
