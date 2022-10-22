@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat.getSystemService
 class  Notifications(){
     val NOTIFIYTAG="new request"
     @RequiresApi(Build.VERSION_CODES.M)
-    fun Notify(context: Context, message:String, number:Int){
+    fun Notify(context: Context, message:String): Notification {
         val notificationManager: NotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
@@ -29,13 +29,14 @@ class  Notifications(){
             notificationManager.createNotificationChannel(channel)
         }
 
-        val builder = NotificationCompat.Builder(context, "im_lazy")
+        val notif : Notification = NotificationCompat.Builder(context, "im_lazy")
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle("Alarm")
             .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .build()
 
-        notificationManager.notify(101, builder.build())
+        return notif
 
 
 

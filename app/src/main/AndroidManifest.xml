@@ -5,6 +5,8 @@
 
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -26,15 +28,17 @@
         </activity>
 
         <receiver android:name=".myBroadcastReceiver"
-            android:exported="true">
+            android:exported="false">
 
             <intent-filter>
                 <action android:name="alm"/>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
 
 
         </receiver>
+    <service android:name=".AlarmService" />
     </application>
 
 </manifest>

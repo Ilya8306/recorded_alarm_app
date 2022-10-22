@@ -15,7 +15,13 @@ class myBroadcastReceiver: BroadcastReceiver() {
         if (intent!!.action.equals("alm")){
 
             val not = Notifications()
-            not.Notify(context!!, "bro stop procrastinating", 10)
+            Toast.makeText(context,"fu", Toast.LENGTH_LONG).show()
+            val intentService = Intent(context, AlarmService::class.java)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                context!!.startForegroundService(intentService)
+            } else {
+                context!!.startService(intentService)
+            }
         }
         else if (intent!!.action.equals("android.intent.action.BOOT_COMPLETED")){
             val savedata = SaveData(context!!)
